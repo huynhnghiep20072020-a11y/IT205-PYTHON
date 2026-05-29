@@ -1,16 +1,3 @@
-# (1) Phân tích và thiết kế giải pháp
-#   + Input: Lựa chọn menu (String), branch_count, class_count, student_count (int).
-#   + Output: Báo cáo tổng học viên, danh sách lớp vắng, chi nhánh đông nhất, thông báo lỗi.
-# - Giải pháp & Thuật toán:
-#   + Sử dụng vòng lặp while True vòng ngoài cùng để duy trì Menu. Kiểm tra choice hợp lệ (Bẫy 2).
-#   + Chức năng 1: Khởi tạo biến max_students và best_branch để theo dõi chi nhánh đông nhất.
-#   + Dùng vòng lặp for duyệt từng chi nhánh. Khởi tạo tổng học viên chi nhánh = 0 và một list để lưu lớp < 10 học viên.
-#   + Dùng vòng lặp for duyệt từng lớp. Dùng while True để ép nhập student_count >= 0 (Bẫy 1).
-#   + Cộng dồn học viên và kiểm tra nếu < 10 thì đưa vào list.
-#   + Sau khi duyệt xong lớp của 1 chi nhánh: In tổng số, in list lớp vắng hoặc thông báo nếu list rỗng (Bẫy 3). Cập nhật best_branch.
-#   + In kết quả chi nhánh đông nhất khi kết thúc vòng lặp chi nhánh.
-
-# Triển khai code
 while True:
     print("\n====== MENU ======")
     print("1. Nhập dữ liệu và xem báo cáo thống kê")
@@ -31,7 +18,6 @@ while True:
         
     elif choice == '1':
         branch_count = int(input("\nNhập số lượng chi nhánh: "))
-        
         max_students = -1
         best_branch = 0
         
@@ -52,6 +38,7 @@ while True:
                 
                 branch_total_students += student_count
                 
+                # Lưu lại id các lớp có ít học viên
                 if student_count < 10:
                     low_student_classes.append(class_id)
             
@@ -64,6 +51,7 @@ while True:
                 classes_str = ", ".join(map(str, low_student_classes))
                 print(f"Danh sách các lớp có sĩ số dưới 10 học viên: Lớp {classes_str}")
             
+            # Kiểm tra chi nhánh đông nhất
             if branch_total_students > max_students:
                 max_students = branch_total_students
                 best_branch = branch
